@@ -1,0 +1,34 @@
+@import './toolbar';
+
+core-generic-list-toolbar {
+  @include toolbar;
+}
+
+.core-generic-list-toolbar-paginator-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+
+  p-button:first-of-type {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+}
+
+  .p-paginator {
+    padding: 0;
+  }
+
+  .p-divider {
+    margin: calc(2 * $gap) 0;
+  }
+
+  .core-paginator-rows-per-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

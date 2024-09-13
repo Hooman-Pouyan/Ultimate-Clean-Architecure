@@ -1,0 +1,33 @@
+<core-generic-toolbar [toolbar]="toolbar"></core-generic-toolbar>
+
+<menu class="toolbar-end">
+  <li *ngIf="showPaginator">
+    <p-button [label]="paginator.total ? paginatorLabel : 'No Data'"
+              styleClass="p-button-secondary p-button-text p-button-sm"
+              (click)="paginator.total ? paginatorOverlay.toggle($event) : null"></p-button>
+
+    <p-overlayPanel #paginatorOverlay
+                    styleClass="core-generic-list-toolbar-paginator-overlay">
+      <p-button (click)="paginatorOverlay.toggle($event)" icon="pi pi-times" styleClass="p-button-sm mt-1 -mr-2 text-xs w-10 text-color-secondary p-button-text"></p-button>
+      <p-paginator (onPageChange)="onPageChange($event)"
+                   [first]="paginator.first"
+                   [rows]="paginator.rows"
+                   [showJumpToPageDropdown]="true"
+                   [showPageLinks]="false"
+                   [totalRecords]="paginator.total"></p-paginator>
+      <p-divider></p-divider>
+      <div class="core-paginator-rows-per-page">
+      <span class="p-buttonset">
+        <ng-container *ngFor="let option of rowsPerPageOptions">
+        <button pButton pRipple
+                [label]="'' + option"
+                (click)="onPageChange({rows: option, first: 0})"
+                class="p-button-text p-button-sm"
+                [ngClass]="option === paginator.rows ? 'p-button-primary' : 'p-button-secondary'"></button>
+        </ng-container>
+    </span>
+      </div>
+    </p-overlayPanel>
+  </li>
+</menu>
+

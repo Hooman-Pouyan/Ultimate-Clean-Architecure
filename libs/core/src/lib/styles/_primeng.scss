@@ -1,0 +1,30 @@
+*:focus,
+.p-panelmenu .p-panelmenu-header:not(.p-disabled):focus .p-panelmenu-header-content {
+  box-shadow: none !important;
+}
+
+
+.p-button {
+  &.p-button-linked {
+    position: relative;
+
+    &:enabled:hover {
+      .p-button-label {
+        text-decoration: none;
+      }
+    }
+  }
+
+  a.p-button-linked-label {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    color: inherit;
+    position: absolute;
+  }
+}
+
+.p-confirm-dialog {
+  min-width: 500px;
+}

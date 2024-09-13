@@ -1,0 +1,15 @@
+dist
+node_modules
+.git
+.dockerignore
+.env
+.gitignore
+Dockerfile
+package-lock.json
+yarn.lock
+*.sh
+*.md
+.angular
+.editorconfig
+.gitlab-ci.yml
+docker-compose.yml

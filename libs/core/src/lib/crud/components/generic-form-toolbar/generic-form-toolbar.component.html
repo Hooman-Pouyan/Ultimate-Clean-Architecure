@@ -1,0 +1,17 @@
+<core-generic-toolbar [toolbar]="toolbar"></core-generic-toolbar>
+
+<menu class="toolbar-end">
+  <li *ngIf="showInfo">
+    <p-button label="info"
+              icon="pi pi-info"
+              styleClass="p-button-secondary p-button-text p-button-sm"
+              (click)="infoOverlay.toggle($event)"></p-button>
+
+    <p-overlayPanel #infoOverlay
+                    [showCloseIcon]="true"
+                    styleClass="core-info-fields-overlay">
+      <core-info-fields [infoFields]="infoFields" [data]="data"></core-info-fields>
+    </p-overlayPanel>
+  </li>
+</menu>
+

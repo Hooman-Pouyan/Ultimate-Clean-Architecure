@@ -1,0 +1,13 @@
+ <div class="form-field-2">
+  <label [for]="FormControlData.name" *ngIf="FormControlData.showLabel">
+    <span>{{FormControlData.label + " "}}</span>
+    <span class="text-red-600">{{ FormControlData.required ? '*' : '' }}</span>
+  </label>
+  <input [formControlName]="FormControlData.name" [id]="FormControlData.name"
+    pInputText>
+  <div class="form-field-message">
+    <!-- <small class="p-error" *ngIf="formControlHasError('je_master_id','required')">
+            Code is required.
+          </small> -->
+  </div>
+</div>

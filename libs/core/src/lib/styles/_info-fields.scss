@@ -1,0 +1,20 @@
+.core-info-fields-overlay {
+  display: flex;
+  flex-direction: column;
+}
+
+core-info-fields {
+  .core-info-fields-row {
+    display: flex;
+    padding-block: $gap;
+
+    .core-info-fields-label {
+      @include styleclass('text-color-secondary');
+    }
+
+    .core-info-fields-value {
+      @include styleclass('text-primary');
+      padding-inline: calc($gap / 2);
+    }
+  }
+}

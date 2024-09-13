@@ -1,0 +1,40 @@
+
+# i should write github workflow because of migration from gitlab 
+image: node:18.16.0-alpine
+
+stages:
+  - publish
+
+publish:
+  stage: publish
+  only:
+    refs:
+      - main
+    variables:
+      - $CI_COMMIT_MESSAGE !~ /Bump version of .* to .*/
+  before_script:
+    - apk add --no-cache nodejs npm git jq
+    - git config --global user.name "Hooman-clean arch"
+    - git config --global user.email "mhooman.pouya@gmail.com"
+  script:
+    - echo $CI_COMMIT_BRANCH
+    - echo $CI_COMMIT_MESSAGE
+    - npm cache clean --force
+    - npm install
+    # Patch version for all projects
+    - |
+      for dir in ./projects/* ; do
+        if [ -d "$dir" ]; then 
+          echo "Patching version for $dir"
+          NEW_VERSION=$(npm --prefix $dir version --no-git-tag-version patch)
+          echo "New version is $NEW_VERSION"
+          TAG_NAME="$(basename $dir)-$NEW_VERSION"
+          git add $dir/package.json
+          git commit -m "Bump version of $(basename $dir) to $NEW_VERSION"
+          git tag "$TAG_NAME"
+        fi
+      done
+    - git remote set-url origin https://oauth2:${GITLAB_AUTH_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git
+    - git push origin HEAD:$CI_COMMIT_REF_NAME
+    - git push origin --tags
+    - npm run build-pkg

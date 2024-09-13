@@ -1,0 +1,94 @@
+<!-- <div class="page page-form" [showLoading]="showLoading.page()">
+  <core-generic-form-toolbar [toolbar]="toolbar"
+                             [data]="data"
+                             class="page-toolbar page-form-toolbar"
+                             *ngIf="toolbar">
+  </core-generic-form-toolbar>
+
+  <div class="page-content page-form-content">
+    <form class="form-view" [formGroup]="form" (ngSubmit)="save()" autocomplete="off"
+          [ngClass]="{'form-view': pageType === PageType.View}">
+      <div class="form-field-2">
+        <label for="title">Title *</label>
+        <input pInputText
+               id="title"
+               aria-describedby="title-help"
+               formControlName="title"/>
+        <div class="form-field-message">
+          <small class="p-error">Username is not available.</small>
+          <small class="p-error">Username is not available.</small>
+        </div>
+      </div>
+
+      <div class="form-field-2">
+        <label for="code">Code *</label>
+        <input pInputText
+               id="code"
+               aria-describedby="code-help"
+               formControlName="code"/>
+      </div>
+
+      <div class="form-field-2">
+        <label for="date">Date *</label>
+        <p-calendar
+          id="date"
+          aria-describedby="date-help"
+          formControlName="date"></p-calendar>
+      </div>
+
+      <div class="form-field-6">
+        <label>Test Dropdown</label>
+        <p-dropdown formControlName="divisionId" [options]="[]"></p-dropdown>
+      </div>
+
+      <div class="form-field-4">
+        <label for="description">Description</label>
+        <input pInputText
+               id="description"
+               aria-describedby="description-help"
+               formControlName="description"/>
+      </div>
+
+
+    </form>
+
+  </div>
+</div> -->
+
+
+
+  <!-- FormMaster -->
+<core-generic-form
+#form
+    [store]="store"
+    [selectors]="selectors"
+    [actions]="actions"
+    [configs]="configs"
+    [id]="'5'"
+    [pageType]="pageType"
+    [formControls]="FormMasterControls()!"
+    divisionSelectors=""
+    [typeSelector]="selectors"
+    [inline]="false"
+    [modal]="true"
+    masterDetail="sample"
+    >
+  <div type-selector>
+    <div #typeList class="p-inputgroup flex justify-content-start w-full">
+  <p-multiSelect
+              [options]="[{id: 1}, {id: 2}]"
+              [dropdownIcon]="'pi pi-angle-down'"
+              optionLabel="type_detail_id"
+              [(ngModel)]="selectedTypeDetailId"
+              [styleClass]="'w-full'">
+    <ng-template let-TypeDetail pTemplate="item">
+      <div class="flex justify-content-between gap-1 w-full">
+        <span>{{ TypeDetail.type_detail_id }}</span>
+      </div>
+    </ng-template>
+  </p-multiSelect>
+</div>
+
+  </div>
+  </core-generic-form>
+  <!-- FormMasterDetail -->

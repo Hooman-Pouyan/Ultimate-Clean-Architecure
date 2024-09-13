@@ -1,0 +1,30 @@
+<p-progressBar mode="determinate"
+               [showValue]="false"
+               [value]="progressValue"
+               [color]="progressStatusColor"
+               [styleClass]="progressbarHidden ? 'hidden' : ''"></p-progressBar>
+
+<core-shell-topbar>
+  <ng-container toolbar>
+    <ng-content select="[toolbar]"></ng-content>
+  </ng-container>
+</core-shell-topbar>
+
+<nav>
+  <core-shell-nav>
+    <ng-container header>
+      <ng-content select="[nav-header]"></ng-content>
+    </ng-container>
+  </core-shell-nav>
+</nav>
+
+
+<main>
+  <p-card class="shell-main">
+    <ng-template pTemplate="header">&nbsp;</ng-template>
+    <ng-template pTemplate="content">
+      <ng-content select="[main]"></ng-content>
+    </ng-template>
+    <ng-template pTemplate="footer">&nbsp;</ng-template>
+  </p-card>
+</main>

@@ -1,0 +1,13 @@
+      <div class="form-field-2">
+  <label [for]="FormControlData.name" *ngIf="FormControlData.showLabel">
+    <span>{{FormControlData.label + " "}}</span>
+    <span class="text-red-600">{{ FormControlData.required ? '*' : '' }}</span>
+  </label>
+        <ng-content select="[division-selector]" [formControlName]="FormControlData.name" id="division_id">
+        </ng-content>
+        <div class="form-field-message">
+          <!-- <small class="p-error" *ngIf="formControlHasError('division_id','required')">
+            Division is required.
+          </small> -->
+        </div>
+      </div>

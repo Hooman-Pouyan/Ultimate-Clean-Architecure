@@ -1,0 +1,51 @@
+@import "./variables";
+
+core-shell {
+  core-shell-topbar {
+    grid-area: topbar;
+    height: $topbarHeight;
+    width: 100%;
+    z-index: 100;
+
+    p-card.shell-topbar {
+      .p-card {
+        width: 100%;
+        height: 100%;
+
+        .p-card-body {
+          display: flex;
+          align-items: center;
+          padding: 0;
+          height: 100%;
+          width: 100%;
+
+          .p-card-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: $gap;
+            width: 100%;
+
+            core-shell-breadcrumb {
+              .p-breadcrumb {
+                border: none;
+                padding-inline: $gap;
+                width: 100%;
+              }
+            }
+
+            core-shell-toolbar {
+              .p-toolbar {
+                border: 0;
+                padding: 0;
+                margin-inline: calc($gap / 2);
+                background-color: transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

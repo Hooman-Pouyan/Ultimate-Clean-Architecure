@@ -1,0 +1,26 @@
+ <div class="form-field-2">
+  <label [for]="FormControlData.name" *ngIf="FormControlData.showLabel">
+    <span>{{FormControlData.label + " "}}</span>
+    <span class="text-red-600">{{ FormControlData.required ? '*' : '' }}</span>
+  </label>
+  <ng-container *ngIf="FormControlData.templateType == 'toggle'; else switchButton">
+    <p-toggleButton
+      [id]="FormControlData.name"
+      [formControlName]="FormControlData.name"
+      [ngClass]="FormControlData.classList"
+      [onLabel]="FormControlData.onLabel ?? 'On'"
+      [offLabel]="FormControlData.offLabel ?? 'Off'">
+    </p-toggleButton>
+    <!-- <p-message *ngIf="formControlHasError('active','required')" severity="error"
+            text="Active is required."></p-message> -->
+  </ng-container>
+  <ng-template #switchButton>
+    <p-inputSwitch
+      [id]="FormControlData.name"
+      [formControlName]="FormControlData.name"
+      [ngClass]="FormControlData.classList">
+    </p-inputSwitch>
+    <!-- <p-message *ngIf="formControlHasError('active','required')" severity="error"
+            text="Active is required."></p-message> -->
+  </ng-template>
+</div>

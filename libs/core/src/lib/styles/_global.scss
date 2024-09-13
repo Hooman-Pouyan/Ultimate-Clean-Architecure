@@ -1,0 +1,33 @@
+html {
+  font-size: 15px;
+}
+
+body {
+  font-family: var(--font-family);
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  height: 3px;
+  width: 3px;
+  background: var(--surface-300);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-500);
+  border-radius: 5px;
+  // box-shadow: 0 1px 5px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--surface-300);
+  border-radius: 5px;
+}
+
+.clickable {
+  cursor: pointer;
+}

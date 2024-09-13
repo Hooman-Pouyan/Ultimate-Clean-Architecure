@@ -1,0 +1,19 @@
+<div class="page page-list">
+  <core-generic-list-toolbar (paginate)="onPaginate($event)"
+                             [paginator]="paginator"
+                             [toolbar]="toolbar"
+                             [selectedRecords]="selectedRecords.length"
+                             class="page-toolbar page-list-toolbar">
+  </core-generic-list-toolbar>
+
+  <core-generic-list [data]="filteredData"
+                     [idField]="config.field.id"
+                     [firstRow]="paginator.first + 1"
+                     [table]="table"
+                     [loading]="showLoading()"
+                     selectionMode="multiple"
+                     (selection)="selectionChanged($event)"
+                     (activation)="activated($event)"
+                     class="page-content page-list-content">
+  </core-generic-list>
+</div>

@@ -1,0 +1,25 @@
+
+<div class="form-field-2">
+  <label [for]="FormControlData.name" *ngIf="FormControlData.showLabel">
+    <span>{{FormControlData.label + " "}}</span>
+    <span class="text-red-600">{{ FormControlData.required ? '*' : '' }}</span>
+  </label>
+  <p-calendar
+    [formControlName]="FormControlData.name"
+    [id]="FormControlData.name"
+    [ngClass]="FormControlData.class"
+    [showButtonBar]="FormControlData.showButtonBar ?? undefined"
+    [selectionMode]="FormControlData.selectionMode ?? 'single'"
+    [showTime]="FormControlData.showTime ?? undefined"
+    [showSeconds]="FormControlData.showSeconds ?? undefined"
+    [showWeek]="FormControlData.showWeek ?? undefined"
+    [touchUI]="FormControlData.touchUI ?? undefined">
+    <ng-template *ngIf="FormControlData.header" pTemplate="header">{{FormControlData.header}}</ng-template>
+    <ng-template *ngIf="FormControlData.header" pTemplate="footer">{{FormControlData.footer}}</ng-template>
+  </p-calendar>
+  <div class="form-field-message">
+    <!-- <small class="p-error" *ngIf="formControlHasError('je_master_date','required')">
+            Date is required.
+          </small> -->
+  </div>
+</div>

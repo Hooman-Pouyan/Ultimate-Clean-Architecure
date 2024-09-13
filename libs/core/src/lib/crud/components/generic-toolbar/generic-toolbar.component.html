@@ -1,0 +1,33 @@
+<menu class="toolbar-start">
+  <li *ngFor="let item of toolbar.items">
+    <ng-container [ngSwitch]="item.element">
+      <ng-container *ngSwitchCase="ToolElement.Button">
+        <p-button
+          (click)="runCommand($event, item)"
+          [icon]="item.icon"
+          [label]="item.label" [pTooltip]="item.tooltip"
+          [styleClass]="item.styleClass"
+          [loading]="!!(item.data?.showLoading && item.data?.showLoading())"
+          *permission="item.permission"
+          tooltipPosition="bottom">
+        </p-button>
+        <p-confirmPopup [key]="item.id"
+                        *ngIf="item.confirm?.length"></p-confirmPopup>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="ToolElement.Link">
+        <p-button [label]="item.label"
+                  [styleClass]="'p-button-linked ' + item.styleClass"
+                  [pTooltip]="item.tooltip" tooltipPosition="bottom"
+                  [icon]="item.icon"
+                  [loading]="!!(item.data?.showLoading && item.data?.showLoading())"
+                  *permission="item.permission">
+          <a [routerLink]="item.command()"
+             [state]="item.data?.routerStates ? item.data?.routerStates() : {}"
+             [queryParams]="item.data?.queryParams ? item.data?.queryParams() : {}"
+             class="p-button-linked-label"></a>
+        </p-button>
+      </ng-container>
+    </ng-container>
+  </li>
+</menu>

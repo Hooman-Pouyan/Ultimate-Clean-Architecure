@@ -1,0 +1,116 @@
+<p-table [value]="data.length ? data : altData()"
+         [loading]="!!data.length && loading$()"
+         loadingIcon="pi pi-spin pi-spinner"
+         [selectionMode]="selectionMode"
+         (selectionChange)="selectionChanged($event)"
+         [columns]="table.columns"
+         [reorderableColumns]="true"
+         >
+  <ng-template pTemplate="header">
+    <tr pReorderableColumn>
+      <th class="table-selection-header" *ngIf="selectionMode">
+        <ng-container *ngIf="selectionMode === 'single'">
+          <!--          <i class="pi pi-circle" style="font-size: 1.4rem"></i>-->
+        </ng-container>
+        <ng-container *ngIf="selectionMode === 'multiple'">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </ng-container>
+      </th>
+      <th *ngFor="let column of table.columns" [pTooltip]="column.tooltip" tooltipPosition="bottom" pReorderableColumn>
+        {{ column.label }}
+      </th>
+      <th *ngIf="table.actions.length" class="table-actions-header">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template let-i="rowIndex" let-row pTemplate="body" let-index="rowIndex">
+    <tr [ngClass]="{'table-activation': activatedRow && (activatedRow || {})[idField] === (row || {})[idField]}">
+      <ng-container *ngIf="!data.length && loading$()">
+        <td *ngIf="selectionMode">
+          <p-skeleton></p-skeleton>
+        </td>
+        <td *ngFor="let column of table.columns">
+          <p-skeleton></p-skeleton>
+        </td>
+        <td>
+          <p-skeleton></p-skeleton>
+        </td>
+      </ng-container>
+
+      <ng-container *ngIf="!!data.length">
+        <td class="table-selection" *ngIf="selectionMode">
+          <ng-container *ngIf="selectionMode === 'single'">
+            <p-tableRadioButton [value]="row"></p-tableRadioButton>
+          </ng-container>
+          <ng-container *ngIf="selectionMode === 'multiple'">
+            <p-tableCheckbox [value]="row"></p-tableCheckbox>
+          </ng-container>
+        </td>
+
+        <ng-container *ngFor="let column of table.columns">
+          <td (click)="activated(row)" [ngClass]="column.styleClass">
+            <core-format-field-value [index]="firstRow + i"
+                                     [value]="row[column.field]"
+                                     [type]="column.type"
+                                     [format]="column.format">
+            </core-format-field-value>
+          </td>
+        </ng-container>
+
+        <td class="table-actions">
+          <ng-container *ngFor="let action of table.actions; index as i">
+            <ng-container [ngSwitch]="action.element">
+              <ng-container *ngSwitchCase="ToolElement.Button">
+                <p-button
+                  (click)="runCommand($event, row[idField] + action.id, row[idField], action)"
+                  [icon]="action.icon"
+                  [label]="action.label" [pTooltip]="action.tooltip"
+                  [styleClass]="'p-button-rounded p-button-text ' + action.styleClass"
+                  [loading]="!!(action.data?.showLoading && action.data?.showLoading())"
+                  *permission="action.permission"
+                  tooltipPosition="bottom">
+                </p-button>
+                <p-confirmPopup [key]="row[idField] + action.id"
+                                *ngIf="action.confirm?.length"></p-confirmPopup>
+              </ng-container>
+
+              <ng-container *ngSwitchCase="ToolElement.Link">
+                <p-button [label]="action.label"
+                          [styleClass]="'p-button-rounded p-button-text p-button-linked ' + action.styleClass"
+                          [pTooltip]="action.tooltip" tooltipPosition="bottom"
+                          [icon]="action.icon"
+                          [loading]="!!(action.data?.showLoading && action.data?.showLoading())"
+                          *permission="action.permission">
+                  <a [routerLink]="buildRouterLink(row[idField], action)"
+                     [state]="buildRouterLinkState(row, action)"
+                     [queryParams]="action.data?.queryParams || {}"
+                     class="p-button-linked-label"></a>
+                </p-button>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <p-button
+            (click)="infoOverlay.toggle($event)"
+            icon="pi pi-info-circle"
+            pTooltip="Info"
+            [styleClass]="'p-button-rounded p-button-text p-info-button'"
+            tooltipPosition="bottom">
+          </p-button>
+
+          <p-overlayPanel #infoOverlay
+                          styleClass="core-info-fields-overlay">
+                          <div Class="flex justify-content-end">
+                            <p-button (click)="infoOverlay.toggle($event)" icon="pi pi-times" styleClass="p-button-sm w-13 -mt-3 -mr-3 text-xs text-color-secondary p-button-text"></p-button>
+                          </div>
+            <core-info-fields [infoFields]="infoColumns" [data]="row"></core-info-fields>
+          </p-overlayPanel>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <!-- <tr>
+            <td class="NoDataMessage" colspan="-1">No Data Found Is Found</td>
+        </tr> -->
+    </ng-template>
+</p-table>

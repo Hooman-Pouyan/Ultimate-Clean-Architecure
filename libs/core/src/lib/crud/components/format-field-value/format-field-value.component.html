@@ -1,0 +1,40 @@
+<ng-container [ngSwitch]="type">
+  <ng-container *ngSwitchCase="DataType.Index">
+    {{ index }}
+  </ng-container>
+
+  <ng-container *ngSwitchCase="DataType.Boolean">
+    <ng-container *ngTemplateOutlet="handleBoolean"></ng-container>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="DataType.Datetime">
+    {{ value | date: format || 'medium' }}
+  </ng-container>
+
+  <ng-container *ngSwitchCase="DataType.Currency">
+    {{ value | currency: format || 'CAD' }}
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    {{ value }}
+  </ng-container>
+</ng-container>
+
+<ng-template #handleBoolean>
+  <ng-container [ngSwitch]="format">
+    <ng-container *ngSwitchCase="'icon'">
+      <i *ngIf="value" class="pi pi-check boolean-true"></i>
+      <i *ngIf="!value" class="pi pi-times boolean-false"></i>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'yes,no'">
+      <span *ngIf="value" class="boolean-true">Yes</span>
+      <span *ngIf="!value" class="boolean-false">No</span>
+    </ng-container>
+
+    <ng-container *ngSwitchDefault>
+      {{ value }}
+    </ng-container>
+  </ng-container>
+</ng-template>
+

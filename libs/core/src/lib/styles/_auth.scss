@@ -1,0 +1,46 @@
+core-auth-sign-in,
+core-auth-sign-up {
+  background-color: var(--surface-ground);
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  .auth-page-title {
+    color: var(--text-color-secondary)
+  }
+
+  .p-card {
+    width: calc(80 * $gap);
+
+    .p-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @include styleclass('p-4');
+
+      img {
+        width: auto;
+      }
+    }
+
+    .p-card-body {
+      padding-top: 0;
+
+      .p-card-footer {
+        .p-button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .auth-Clean-arch-logo {
+    width: auto;
+    @include styleclass('m-4');
+  }
+}

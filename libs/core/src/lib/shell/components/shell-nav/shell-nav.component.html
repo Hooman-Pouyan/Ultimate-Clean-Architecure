@@ -1,0 +1,103 @@
+<p-card class="shell-nav">
+  <ng-template pTemplate="header">
+    <a [href]="org.homePage" class="shell-nav-organization-logo" target="_blank">
+      <ng-container *ngIf="mode === ShellNavMode.Wide">
+        <img @fade
+             [alt]="org.title"
+             [height]="org.logo.hTitle.height"
+             [ngSrc]="org.logo.hTitle.path"
+             [ngStyle]="{
+                        'min-height.px': org.logo.hTitle.height,
+                        'min-width.px': org.logo.hTitle.width
+                     }"
+             [width]="org.logo.hTitle.width" priority>
+      </ng-container>
+      <ng-container *ngIf="mode === ShellNavMode.Compressed">
+        <img @fade
+             [alt]="org.title"
+             [height]="org.logo.noTitle.height"
+             [ngSrc]="org.logo.noTitle.path"
+             [ngStyle]="{
+                        'min-height.px': org.logo.noTitle.height,
+                        'min-width.px': org.logo.noTitle.width
+                     }"
+             [width]="org.logo.noTitle.width" priority>
+      </ng-container>
+    </a>
+    <p-divider></p-divider>
+  </ng-template>
+
+  <ng-template pTemplate="title">
+    <ng-container *ngIf="mode === ShellNavMode.Wide">
+      <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngIf="mode === ShellNavMode.Compressed">
+      <p-button (click)="headerOp.toggle($event)"
+                icon="pi pi-link"
+                styleClass="p-button-secondary p-button-text"></p-button>
+    </ng-container>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <ng-container *ngIf="mode === ShellNavMode.Wide">
+      <p-panelMenu [model]="navMenuItems" [multiple]="true" ></p-panelMenu>
+    </ng-container>
+    <ul *ngIf="mode === ShellNavMode.Compressed" class="shell-nav-menu-compressed">
+      <li *ngFor="let item of navMenuItems; index as i">
+        <p-button (click)="menu.toggle($event)"
+                  [icon]="item.icon"
+                  [pTooltip]="item.label"
+                  styleClass="p-button-secondary p-button-text shell-nav-toggle"
+        ></p-button>
+        <p-menu #menu [model]="item.items"
+                [popup]="true"
+                [style]="{'margin-top.px': -110, 'margin-left.px': 45}"></p-menu>
+      </li>
+    </ul>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <p-button (click)="toggleNavMode()"
+              [icon]="mode === ShellNavMode.Compressed ? 'pi pi-arrow-right' : 'pi pi-arrow-left'"
+              styleClass="p-button-secondary p-button-text shell-nav-toggle"></p-button>
+
+    <p-divider></p-divider>
+
+    <a [href]="csi.homePage" class="shell-nav-Clean-arch-logo"
+       target="_blank">
+      <ng-container *ngIf="mode === ShellNavMode.Wide">
+        <img @fade
+             [alt]="csi.title"
+             [height]="csi.logo.hTitle.height"
+             [ngSrc]="csi.logo.hTitle.path"
+             [ngStyle]="{
+                        'min-height.px': csi.logo.hTitle.height,
+                        'min-width.px': csi.logo.hTitle.width
+                     }"
+             [width]="csi.logo.hTitle.width" priority>
+      </ng-container>
+      <ng-container *ngIf="mode === ShellNavMode.Compressed">
+        <img @fade
+             [alt]="csi.title"
+             [height]="csi.logo.noTitle.height"
+             [ngSrc]="csi.logo.noTitle.path"
+             [ngStyle]="{
+                         'min-height.px': csi.logo.noTitle.height,
+                         'min-width.px': csi.logo.noTitle.width
+                     }"
+             [width]="csi.logo.noTitle.width" priority>
+      </ng-container>
+    </a>
+  </ng-template>
+</p-card>
+
+<p-overlayPanel #headerOp styleClass="shell-nav-header-op">
+                          <div Class="flex justify-content-end">
+                            <p-button (click)="headerOp.toggle($event)" icon="pi pi-times" styleClass="p-button-sm w-11 -mt-3 mb-2 -mr-5 text-xs text-color-secondary p-button-text"></p-button>
+                          </div>
+  <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+</p-overlayPanel>
+
+<ng-template #headerTemplate>
+  <ng-content select="[header]"></ng-content>
+</ng-template>

@@ -1,0 +1,31 @@
+      <div class="form-field-2">
+  <label [for]="FormControlData.name" *ngIf="FormControlData.showLabel">
+    <span>{{FormControlData.label + " "}}</span>
+    <span class="text-red-600">{{ FormControlData.required ? '*' : '' }}</span>
+  </label>
+        <p-inputNumber
+         [formControlName]="FormControlData.name"
+         [id]="FormControlData.name"
+         [ngClass]="FormControlData.class"
+         [inputId]="FormControlData.inputId ?? undefined"
+         [maxFractionDigits]="FormControlData.maxFractionDigits ?? undefined"
+         [minFractionDigits]="FormControlData.minFractionDigits ?? undefined"
+         [mode]="FormControlData.mode ?? undefined"
+         [min]="FormControlData.min ?? undefined"
+         [max]="FormControlData.max ?? undefined"
+         [currency]="FormControlData.currency ?? undefined"
+         [locale]="FormControlData.locale ?? undefined"
+         [currencyDisplay]="FormControlData.currencyDisplay ?? undefined"
+         [suffix]="FormControlData.suffix ?? undefined"
+         [prefix]="FormControlData.prefix ?? undefined"
+         [showButtons]="FormControlData.showButtons ?? undefined"
+         [buttonLayout]="FormControlData.buttonLayout ?? undefined"
+         [step]="FormControlData.step ?? undefined"
+         [id]="FormControlData.id">
+        </p-inputNumber>
+        <div class="form-field-message">
+          <!-- <small class="p-error" *ngIf="formControlHasError('je_master_id','required')">
+            Code is required.
+          </small> -->
+        </div>
+      </div>

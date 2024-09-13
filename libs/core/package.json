@@ -1,0 +1,23 @@
+{
+  "name": "@Clean-arch/core",
+  "version": "0.0.104",
+  "publishConfig": {
+    "@Clean-arch:registry": "https://gitlab.com/api/v4/projects/47663686/packages/npm/"
+  },
+  "peerDependencies": {
+    "@angular/common": "^16.2.3",
+    "@angular/core": "^16.2.3",
+    "@angular/forms": "^16.2.3",
+    "@angular/router": "^16.2.3",
+    "@ngrx/effects": "^16.2.0",
+    "@ngrx/store": "^16.2.0",
+    "primeflex": "^3.3.1",
+    "primeicons": "^6.0.1",
+    "primeng": "^16.3.1",
+    "rxjs": "~7.8.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

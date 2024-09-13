@@ -1,0 +1,21 @@
+@import "./toolbar";
+
+core-generic-form-toolbar {
+  @include toolbar;
+}
+
+.core-generic-form-toolbar-info-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+
+  .p-paginator {
+    padding: 0;
+  }
+
+  .p-divider {
+    margin: calc(2 *$gap) 0;
+  }
+}

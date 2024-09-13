@@ -1,0 +1,39 @@
+@import './variables';
+
+@mixin toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  @include styleclass('surface-overlay');
+
+  menu {
+    &.toolbar-start,
+    &.toolbar-end {
+      list-style-type: none;
+      display: flex;
+      gap: $gap;
+      padding: calc($gap / 2) $gap $gap;
+      margin: 0;
+
+      li {
+        .p-button {
+          min-width: 5rem;
+        }
+
+        a, .p-button {
+          &:not(:hover) {
+            @include styleclass('text-color-secondary');
+          }
+        }
+      }
+    }
+
+    &.toolbar-end {
+      margin-inline-start: auto;
+      float: right;
+    }
+  }
+}

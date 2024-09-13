@@ -1,0 +1,13 @@
+<div class="core-info-fields-row" *ngFor="let infoGroup of infoFields">
+    <span *ngFor="let infoField of infoGroup">
+      <!-- <ng-container *ngIf="![null, undefined, ''].includes(data[infoField.field])"> -->
+        <span class="core-info-fields-label">{{ infoField.label }}</span>
+        <span class="core-info-fields-value">
+          <core-format-field-value [value]="data[infoField.field]"
+                                   [type]="infoField.type"
+                                   [format]="infoField.format">
+          </core-format-field-value>
+        </span>
+      <!-- </ng-container> -->
+    </span>
+</div>

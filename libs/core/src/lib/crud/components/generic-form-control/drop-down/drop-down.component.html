@@ -1,0 +1,23 @@
+    <div class="form-field-2">
+  <label [for]="FormControlData.name" *ngIf="FormControlData.showLabel">
+    <span>{{FormControlData.label + " "}}</span>
+    <span class="text-red-600">{{ FormControlData.required ? '*' : '' }}</span>
+  </label>
+        <p-dropdown
+        styleClass="w-full"
+        [options]="FormControlData.dependency ? dependencyData.options() : FormControlData.options!"
+        [dropdownIcon]="FormControlData.dependency ? dependencyData.icon() : 'pi pi-angle-down'"
+        [optionValue]="FormControlData.optionValue"
+        [optionLabel]="FormControlData.optionLabel"
+        [filter]="FormControlData.search"
+        [filterBy]="FormControlData.searchBy"
+        id="division_id"
+        [placeholder]="FormControlData.placeHolder"
+        [formControlName]="FormControlData.name">
+            <ng-template let-option pTemplate="item">
+                    <div class="p-fluid col-8 ">{{option.label}}</div>
+            </ng-template>
+        </p-dropdown>
+        <!-- <p-message *ngIf="formControlHasError('division_id','required') && submitted" severity="error"
+            text="Division is required."></p-message> -->
+    </div>

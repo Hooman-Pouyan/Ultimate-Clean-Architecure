@@ -1,0 +1,37 @@
+<core-shell *ngIf="userAuthenticated" @fade>
+  <ng-container toolbar>
+    <p-button (click)="menu.toggle($event)"
+              icon="pi pi-bell"
+              styleClass="p-button-secondary p-button-text"></p-button>
+    <p-button (click)="menu.toggle($event)"
+              icon="pi pi-calendar"
+              styleClass="p-button-secondary p-button-text"></p-button>
+    <p-button (click)="userMenu.toggle($event)"
+              icon="pi pi-user"
+              styleClass="p-button-secondary p-button-text"></p-button>
+    <p-menu #menu [model]="items" [popup]="true"></p-menu>
+    <p-menu #userMenu [model]="userMenuItems" [popup]="true"></p-menu>
+  </ng-container>
+
+  <ng-container nav-header>
+    <p-dropdown [(ngModel)]="selectedCity"
+                [options]="cities"
+                optionLabel="name"
+                styleClass="w-full"></p-dropdown>
+  </ng-container>
+
+  <ng-container main>
+    <ng-container *ngTemplateOutlet="routerOutlet"></ng-container>
+  </ng-container>
+</core-shell>
+
+<div *ngIf="!userAuthenticated" @fade>
+  <ng-container *ngTemplateOutlet="routerOutlet"></ng-container>
+</div>
+
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<ng-template #routerOutlet>
+  <router-outlet></router-outlet>
+</ng-template>

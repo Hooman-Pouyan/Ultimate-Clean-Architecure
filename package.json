@@ -1,0 +1,51 @@
+{
+  "name": "Ultimate-Clean-Arch",
+  "version": "0.0.10",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "clear-core": "rm -rf ./dist/core",
+    "prebuild-core": "npm run clear-core",
+    "build-core": "ng build core",
+    "publish-core": "cp .npmrc ./dist/core/ && cd ./dist/core && npm publish",
+    "build-publish-core": "npm run build-core && npm run publish-core"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^16.2.3",
+    "@angular/common": "^16.2.3",
+    "@angular/compiler": "^16.2.3",
+    "@angular/core": "^16.2.3",
+    "@angular/forms": "^16.2.3",
+    "@angular/platform-browser": "^16.2.3",
+    "@angular/platform-browser-dynamic": "^16.2.3",
+    "@angular/router": "^16.2.3",
+    "@auth0/angular-jwt": "^5.1.2",
+    "@ngrx/effects": "^16.2.0",
+    "@ngrx/store": "^16.2.0",
+    "@ngrx/store-devtools": "^16.3.0",
+    "primeflex": "3.3.1",
+    "primeicons": "6.0.1",
+    "primeng": "16.3.1",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.3.1",
+    "zone.js": "~0.13.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^16.2.1",
+    "@angular/cli": "~16.2.1",
+    "@angular/compiler-cli": "^16.2.3",
+    "@types/jasmine": "~4.3.5",
+    "jasmine-core": "~4.6.0",
+    "karma": "~6.4.2",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.1",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^16.2.2",
+    "typescript": "~5.1.6"
+  }
+}

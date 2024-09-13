@@ -1,0 +1,129 @@
+lib-generic-detail-form {
+  .boolean {
+    .boolean-true {
+      @include styleclass('text-green-700');
+    }
+
+    .boolean-false {
+      @include styleclass('text-red-600');
+    }
+  }
+
+  .table-confirm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    & > span {
+      @include styleclass('mr-4 font-bold');
+    }
+  }
+
+  p-table {
+    .p-datatable {
+
+      & > .p-datatable-wrapper {
+        overflow: visible;
+      }
+
+      .p-datatable-loading-overlay {
+        margin-block-start: calc(2 * $gap);
+      }
+
+      .p-datatable-thead > tr > th {
+        // padding: $gap;
+        // position: sticky;
+        // top: 50px;
+        z-index: 20;
+
+        &:first-child {
+          padding-inline-start: 1rem;
+        }
+
+        &.table-selection-header {
+          width: calc(4 * $gap);
+          display: table-cell;
+
+          & > span {
+            background-color: transparent;
+            position: absolute;
+            right: 0;
+          }
+        }
+
+        &.table-actions-header {
+          text-align: right;
+          padding-inline-end: 2rem;
+          position: sticky;
+          right: 0;
+        }
+      }
+
+      .NoDataMessage {
+        @include styleclass('bg-gray-100 hover text-center text-lg font-semibold p-3')
+      }
+
+      .p-datatable-tbody {
+        > tr {
+          &:nth-child(even) {
+            @include styleclass('surface-50');
+          }
+
+          &:hover {
+            @include styleclass('surface-200');
+
+            .table-actions {
+              a, .p-button {
+                &:not(:hover) {
+                  @include styleclass('text-color-secondary');
+                }
+              }
+            }
+          }
+
+          &.table-activation {
+            > td {
+              @include styleclass('bg-primary-100 text-primary');
+            }
+          }
+
+          > td {
+            padding: $gap;
+            border: 0;
+            white-space: nowrap;
+
+            &:first-child {
+              padding-inline-start: 1rem;
+            }
+
+            &.table-actions {
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-end;
+              position: sticky;
+              right: 0;
+              background-color: inherit;
+
+              a, .p-button {
+                @include styleclass('h-2rem w-2rem');
+
+                &:not(:hover) {
+                  @include styleclass('text-400');
+                }
+              }
+            }
+
+            .p-skeleton {
+              margin-block: $gap;
+            }
+          }
+        }
+      }
+
+      .p-datatable-loading-overlay {
+        @include styleclass('bg-white-alpha-60');
+      }
+    }
+  }
+}

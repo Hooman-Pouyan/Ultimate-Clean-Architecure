@@ -1,0 +1,79 @@
+<h2 class="auth-page-title">Sign Up</h2>
+<p-card>
+  <ng-template pTemplate="header">
+    <a [href]="org.homePage" class="auth-organization-logo" target="_blank">
+      <img
+        [alt]="org.title"
+        [height]="org.logo.hTitle.height"
+        [ngSrc]="org.logo.hTitle.path"
+        [ngStyle]="{ 'min-height.px': org.logo.hTitle.height, 'min-width.px': org.logo.hTitle.width }"
+        [width]="org.logo.hTitle.width" priority>
+    </a>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+      <div class="form-field-6">
+        <label for="email">Email</label>
+        <input pInputText
+               id="email"
+               aria-describedby="email-help"
+               formControlName="email"/>
+        <div class="form-field-message"></div>
+      </div>
+
+      <div class="form-field-6">
+        <label for="password">Password</label>
+        <p-password formControlName="password"
+                    id="password"
+                    aria-describedby="password-help"
+                    [feedback]="true"></p-password>
+        <div class="form-field-message"></div>
+      </div>
+
+      <div class="form-field-6">
+        <label for="confirm-password">Confirm Password</label>
+        <p-password formControlName="confirmPassword"
+                    id="confirm-password"
+                    aria-describedby="confirm-password-help"
+                    [feedback]="false"
+                    [class]="{
+                        'ng-invalid': form.hasError('passwordsDoNotMatch'),
+                        'ng-dirty': form.get('confirmPassword')?.dirty
+                      }">
+        </p-password>
+        <div class="form-field-message"></div>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <div class="form-actions">
+      <div class="form-action-6">
+        <p-button (onClick)="submit()" label="Sign Up"></p-button>
+      </div>
+      <div class="form-action-3">
+        <p-button label="Sign In"
+                  styleClass="p-button-secondary p-button-text p-button-linked">
+          <a [routerLink]="['/', config.path.signIn]" class="p-button-linked-label"></a>
+        </p-button>
+      </div>
+
+      <div class="form-action-3">
+        <p-button label="Forgot Password ?"
+                  styleClass="p-button-secondary p-button-text p-button-linked">
+          <a [routerLink]="['/', config.path.forgotPassword]" class="p-button-linked-label"></a>
+        </p-button>
+      </div>
+    </div>
+  </ng-template>
+</p-card>
+
+<a [href]="csi.homePage" class="auth-Clean-arch-logo" target="_blank">
+  <img
+    [alt]="csi.title"
+    [height]="csi.logo.hTitle.height"
+    [ngSrc]="csi.logo.hTitle.path"
+    [ngStyle]="{ 'min-height.px': csi.logo.hTitle.height, 'min-width.px': csi.logo.hTitle.width }"
+    [width]="csi.logo.hTitle.width" priority>
+</a>

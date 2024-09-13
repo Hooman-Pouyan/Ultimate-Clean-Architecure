@@ -1,0 +1,136 @@
+<div class="page page-form" [showLoading]="showLoading.page()">
+
+  <core-generic-form-toolbar [toolbar]="toolbar"
+    [data]="data"
+    class="page-toolbar page-form-toolbar"
+    *ngIf="toolbar">
+  </core-generic-form-toolbar>
+
+<section class="page-content page-form-content">
+  <form [formGroup]="form" autocomplete="off"
+    [ngClass]="{'form-view': pageType === PageType.View}">
+    <section
+      *ngFor="let formField of formProperties"
+      class="form-field-2">
+      <div [ngSwitch]="formField.type">
+        <div *ngSwitchCase="'input'">
+          <lib-input [FormControlData]="formField"></lib-input>
+        </div>
+        <div *ngSwitchCase="'division'">
+          <lib-division-list [FormControlData]="formField">
+            <ng-content select="[division-selector]" division-selector></ng-content>
+          </lib-division-list>
+        </div>
+        <div *ngSwitchCase="'calender'">
+          <lib-calender class="bg-black-alpha-10" [FormControlData]="formField"></lib-calender>
+        </div>
+        <div *ngSwitchCase="'number'">
+          <lib-number class="bg-black-alpha-10" [FormControlData]="formField"></lib-number>
+        </div>
+        <div *ngSwitchCase="'toggle'">
+          <lib-toggle class="bg-black-alpha-10" [FormControlData]="formField"></lib-toggle>
+        </div>
+        <div *ngSwitchCase="'dropdown'">
+          <lib-drop-down [dependencyData]="dependencyData()[formField.name]" class="bg-black-alpha-10" [FormControlData]="formField"></lib-drop-down>
+        </div>
+        <div *ngSwitchCase="'multiselect'">
+          <lib-multi-select [dependencyData]="dependencyData()[formField.name]" class="bg-black-alpha-10" [FormControlData]="formField"></lib-multi-select>
+        </div>
+        <div *ngSwitchCase="'type'">
+          <lib-type-list class="bg-black-alpha-10" [FormControlData]="formField">
+            <ng-content select="[type-selector]" type-selector></ng-content>
+          </lib-type-list>
+        </div>
+      </div>
+    </section>
+  </form>
+
+
+<!-- FormMasterDetail -->
+<ng-container *ngIf="detailFormProperties()">
+  <lib-generic-detail-form
+   (detailData)="setDetail($event)"
+   [detailFormProperties]="detailFormProperties()"
+   [detailFormData]="form.value"
+   [pageType]="pageType"
+   [inline]="inline"
+   [modal]="modal"
+   [detailsLoadedData]="detailData()"
+  ></lib-generic-detail-form>
+</ng-container>
+</section>
+</div>
+
+
+
+    <!-- <div>
+      <p-button (click)="addDetailsItem()" icon="pi pi-plus"
+                styleClass=" p-button-secondary p-button-text"></p-button>
+      <p-button (click)="removeSelectedDetailsItems()" icon="pi pi-trash"
+                styleClass=" p-button-secondary p-button-text"></p-button>
+      <p-button icon="pi pi-arrow-right-arrow-left"
+                styleClass=" p-button-secondary p-button-text"></p-button>
+    </div>
+    <div>
+      <p-table [(selection)]="selectedDetailItems"
+               [scrollable]="true"
+               [value]="detailsItems"
+               dataKey="je_detail_id"
+               dataKey="id"
+               scrollHeight="400px">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 4rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th style="width:10%">Id</th>
+            <th style="width:20%">Product Name</th>
+            <th style="width:10%">Product ID</th>
+            <th style="width:10%">Quantity</th>
+            <th style="width:10%">UOM</th>
+            <th style="width:10%">Cost</th>
+            <th style="width:10%">Currency</th>
+            <th style="width:10%">Note</th>
+          </tr>
+        </ng-template>
+        <ng-template let-detailsItem let-i="rowIndex" pTemplate="body">
+          <ng-container *ngIf="detailsForms[i]" [formGroup]="detailsForms[i]">
+            <tr> 
+              <td>
+                <p-tableCheckbox [value]="detailsItem"></p-tableCheckbox>
+              </td>
+              <td>
+                {{detailsItem.je_detail_id}}
+              </td>
+              <td>
+                <p-button (click)="openAccountCodeDialog(detailsForms[i])"
+                          styleClass="p-button-link w-full justify-content-start p-0">
+                  {{ accountNames[detailsItem.account_id] || 'Select an Account' }}
+                </p-button>
+              </td>
+
+              <td class="bg-green-100">
+                <input (input)="detailsForms[i].get('credit')?.setValue(0)"
+                       formControlName="debit"
+                       pInputText
+                       type="number">
+              </td>
+              <td class="bg-red-100">
+                <input (input)="detailsForms[i].get('debit')?.setValue(0)"
+                       formControlName="credit"
+                       pInputText
+                       type="number">
+              </td>
+              <td>
+                <input formControlName="notes" pInputText>
+              </td>
+              <td class="text-center d-flex align-items-center">
+                <p-button (click)="removeDetailsItem(i)"
+                          icon="pi pi-trash"
+                          styleClass="p-button-danger p-button-rounded p-button-text"></p-button>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-template>
+      </p-table>
+    </div> -->

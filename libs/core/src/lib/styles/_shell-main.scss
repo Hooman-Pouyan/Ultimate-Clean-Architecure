@@ -1,0 +1,46 @@
+@import './variables';
+
+core-shell {
+  main {
+    grid-area: main;
+    width: 100%;
+    height: calc(100% - calc(2 * $gap));
+
+    p-card.shell-main {
+      .p-card {
+        width: 100%;
+        height: 100%;
+
+        .p-card-header,
+        .p-card-footer {
+          height: $minCardHeaderHeight;
+        }
+
+        .p-card-body {
+          padding: 0;
+          height: 100%;
+          width: 100%;
+
+          .p-card-content {
+            padding: 0;
+            height: calc(100vh - $topbarHeight - calc(2 * $minCardHeaderHeight) - calc(3 * $gap));
+            overflow: auto;
+            transition: width ease-in-out $transitionTime;
+          }
+        }
+      }
+    }
+  }
+
+  &.shell-nav-compressed {
+    main p-card.shell-main .p-card .p-card-body .p-card-content {
+      width: calc(100vw - $minNavWidth - calc(3 * $gap));
+    }
+  }
+
+  &.shell-nav-wide {
+    main p-card.shell-main .p-card .p-card-body .p-card-content {
+      width: calc(100vw - $maxNavWidth - calc(3 * $gap));
+    }
+  }
+}

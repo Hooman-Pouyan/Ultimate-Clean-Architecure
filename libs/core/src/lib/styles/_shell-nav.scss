@@ -1,0 +1,156 @@
+@import './variables';
+
+core-shell {
+
+  nav {
+    grid-area: nav;
+    height: calc(100% - calc(2 * $gap));
+    transition: width ease-in-out $transitionTime;
+    z-index: 100;
+
+
+
+    p-card.shell-nav {
+      .p-card {
+        height: 100%;
+
+        .p-card-header {
+          display: flex;
+          flex-direction: column;
+
+          .shell-nav-organization-logo {
+            padding: calc($gap + calc($gap / 2)) calc($gap + calc($gap / 2)) $gap;
+            width: 100%;
+            height: $topbarHeight;
+            position: relative;
+            display: flex;
+            justify-content: left;
+
+            img {
+              position: absolute;
+              height: auto;
+              width: auto;
+            }
+          }
+
+          .p-divider {
+            margin: 0;
+          }
+        }
+
+        .p-card-title {
+          margin-top: $gap;
+        }
+
+        .p-card-body {
+          padding: $gap;
+          height: calc(100vh - $topbarHeight - calc(2 * $gap));
+          display: flex;
+          flex-direction: column;
+          position: relative;
+
+          .p-card-content {
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            height: 100%;
+            width: 103%;
+            margin-top: calc(1 * $gap);
+            padding-right: 5px;
+
+            p-panelmenu {
+              display: flex;
+
+              .p-panelmenu {
+                width: 100%;
+
+                .p-panelmenu-header {
+                  .p-panelmenu-header-content {
+                    border: 0;
+                    background-color: transparent;
+
+                    chevronrighticon,
+                    chevrondownicon {
+                      position: absolute;
+                      right: 0;
+
+                      svg {
+                        margin-inline-end: 2px;
+                      }
+                    }
+
+                    .p-panelmenu-header-action {
+                      padding-inline: 2px;
+                    }
+                  }
+                }
+
+                .p-panelmenu-content {
+                  border: 0;
+                  background-color: transparent;
+                }
+              }
+
+            }
+          }
+
+          .p-card-footer {
+            display: flex;
+            flex-direction: column;
+
+            .shell-nav-toggle {
+              float: right;
+              margin-inline-start: auto;
+            }
+
+            .p-divider {
+              margin-block: $gap;
+            }
+
+            .shell-nav-Clean-arch-logo {
+              padding: 0;
+              width: 100%;
+              height: calc($topbarHeight - calc(2 * $gap));
+              position: relative;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              img {
+                position: absolute;
+                height: auto;
+                width: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  &.shell-nav-compressed {
+    nav {
+      p-card.shell-nav .p-card .p-card-header .shell-nav-organization-logo {
+        justify-content: center;
+      }
+
+      .shell-nav-menu-compressed {
+        list-style-type: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+
+        .p-menu {
+          position: absolute;
+          min-width: max-content;
+        }
+      }
+    }
+  }
+}
+
+.p-overlaypanel.shell-nav-header-op {
+  min-width: $maxNavWidth;
+}

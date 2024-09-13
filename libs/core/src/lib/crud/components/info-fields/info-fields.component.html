@@ -1,0 +1,18 @@
+<div class="core-info-fields-row" *ngFor="let infoGroup of infoFields">
+    <span *ngFor="let infoField of infoGroup">
+      <ng-container *ngIf="data[infoField.field] !== undefined && data[infoField.field] !== '' && data[infoField.field] !== null">
+        <span class="core-info-fields-label" *ngIf="!(infoField.field == 'updated_by' || infoField.field == 'updated_at');else update">{{ infoField.label }}</span>
+        <ng-template #update class="core-info-fields-label">
+          <ng-container *ngIf="data[infoGroup[0].field] != null">
+            {{ infoField.label }}
+          </ng-container>
+        </ng-template>
+        <span class="core-info-fields-value" *ngIf="data[infoGroup[0].field] != null">
+          <core-format-field-value [value]="data[infoField.field]"
+                                   [type]="infoField.type"
+                                   [format]="infoField.format">
+          </core-format-field-value>
+        </span>
+      </ng-container>
+    </span>
+</div>

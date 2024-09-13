@@ -1,0 +1,97 @@
+@import './variables';
+
+form,
+.form-group {
+  display: grid;
+  column-gap: calc(3 * $gap);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  &.form-view {
+    .p-multiselect,
+    .p-inputwrapper,
+    .p-inputtext,
+    .p-calendar,
+    .p-dropdown {
+      @include styleclass('surface-hover surface-border text-color opacity-100');
+    }
+  }
+
+  @for $i from 1 through 6 {
+    .form-field-#{$i} {
+      grid-column: span $i;
+    }
+  }
+
+  [class*='form-field-'],
+  .form-field {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    padding-block-end: calc(2 * $gap);
+
+    &:not(.form-field-inline) {
+      flex-direction: column;
+
+      label {
+        padding-inline-start: calc($gap / 2);
+        margin-bottom: $gap;
+      }
+    }
+
+    &.form-field-inline {
+      flex-direction: row;
+      align-items: center;
+
+      label {
+        padding-inline-end: $gap;
+        margin-bottom: 0;
+      }
+    }
+
+    &:has(.form-field-message) {
+      padding-block-end: 0;
+    }
+
+    .form-field-message {
+      padding-inline-start: calc($gap / 2);
+      padding-block: calc($gap / 2) 0;
+      height: calc(2 * $gap);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: $gap;
+    }
+  }
+
+
+  .p-multiselect,
+  .p-inputnumber,
+  .p-inputwrapper,
+  .p-inputtext,
+  .p-calendar,
+  .p-dropdown {
+    width: 100%;
+  }
+
+  p-checkbox {
+    padding-inline-end: $gap;
+  }
+}
+
+.form-actions {
+  display: grid;
+  gap: $gap;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  @for $i from 1 through 6 {
+    .form-action-#{$i} {
+      grid-column: span $i;
+    }
+  }
+
+  [class*='form-action-'],
+  .form-action {
+    width: 100%;
+  }
+}
